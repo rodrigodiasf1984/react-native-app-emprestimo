@@ -1,5 +1,12 @@
 import React,{useCallback, useRef} from 'react';
-import {Image, StatusBar, KeyboardAvoidingView, Platform, ScrollView} from 'react-native';
+import {
+  Image,
+  StatusBar,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  TextInput
+} from 'react-native';
 
 import Input from '../../components/Input';
 
@@ -24,6 +31,7 @@ import {
 } from './styles';
 
 const SignIn: React.FC = () =>{
+  const passwordRef = useRef<TextInput>(null);
   const formRef = useRef<FormHandles>(null);
   const navigation = useNavigation();
   <StatusBar barStyle="light-content" backgroundColor="#F3903D" />
@@ -60,14 +68,39 @@ const SignIn: React.FC = () =>{
               </ButtonSignIn >
             </ContainerButtons>
             <Form ref={formRef} onSubmit={handleSignIn}>
-              <Input name="email" icon="mail" placeholder="E-mail"/>
-              <Input name="password" icon="lock" placeholder="Senha"/>
+              <Input
+                autoCorrect={false}
+                autoCapitalize="none"
+                keyboardType="email-address"
+                name="email"
+                icon="mail"
+                placeholder="E-mail"
+                returnKeyType="next"
+                onSubmitEditing={() => {
+                    passwordRef.current?.focus();
+                  }}
+                />
+              <Input
+                ref={passwordRef}
+                secureTextEntry
+                name="password"
+                icon="lock"
+                placeholder="Senha"
+                returnKeyType="send"
+                onSubmitEditing={()=>{
+                    formRef.current?.submitForm();
+                  }}
+                />
               <ForgotPassword onPress={()=> {}}>
                 <ForgotPasswordText>Esqueci a minha senha</ForgotPasswordText>
               </ForgotPassword>
-              <SubmitButton  onPress={()=>{
-                formRef.current?.submitForm();
-              }}>ENTRAR</SubmitButton>
+              <SubmitButton
+                onPress={()=>{
+                  formRef.current?.submitForm();
+                }}
+              >
+                ENTRAR
+              </SubmitButton>
             </Form>
           </ContainerBottom>
         </Container>
