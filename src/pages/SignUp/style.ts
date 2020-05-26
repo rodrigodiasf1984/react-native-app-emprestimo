@@ -3,7 +3,7 @@ import {Image} from 'react-native';
 import Button from '../../components/Button';
 import {getBottomSpace} from 'react-native-iphone-x-helper';
 export const Container = styled.SafeAreaView`
-  margin-top:-150px;
+  margin-top:-60px;
   flex:1;
   color:#F3903D;
   align-items:center;
@@ -24,10 +24,10 @@ export const ContainerBottom = styled.View`
   margin-top:35px;
   background:#fff;
   width:100%;
-  height:350px;
+  height:70%;
   border-top-left-radius: 60px;
   border-top-right-radius: 60px;
-  padding:30px 30px ;
+  padding:0px 30px ;
   elevation:5;
 
 `;
@@ -42,18 +42,18 @@ export const SubmitButton = styled(Button)`
   padding:5px 0 ${5 + getBottomSpace()}px;
 `;
 
-export const ContainerButtons= styled.View`
-  margin-top:-55px;
+export const ContainerButtons = styled.View`
+  margin-top:-25px;
   margin-bottom:0px;
   flex-direction:row;
   width:100%;
 
 `;
 
-export const ButtonLogin= styled.TouchableOpacity`
+export const ButtonLogin = styled.TouchableOpacity`
   width:50%;
   height:60px;
-  background:#F2F2F2;
+  background:#FFFFFF;
   justify-content:center;
   align-items:center;
   margin-left:0px;
@@ -63,10 +63,10 @@ export const ButtonLogin= styled.TouchableOpacity`
   overflow: hidden;
   elevation:5;
 `;
-export const ButtonSignIn= styled.TouchableOpacity`
+export const ButtonSignIn = styled.TouchableOpacity`
   width:50%;
   height:60px;
-  background:#FFFFFF;
+  background:#F2F2F2;
   justify-content:center;
   align-items:center;
   margin-left:0px;
@@ -77,14 +77,18 @@ export const ButtonSignIn= styled.TouchableOpacity`
   elevation:5;
 `;
 
-export const ButtonText=styled.Text`
+export const ButtonText = styled.Text`
   font-family:'HelveticaNeue Medium';
   color:#707070C6;
   font-size:18px;
 `;
 
-export const ForgotPassword = styled.TouchableOpacity``;
-export const ForgotPasswordText = styled.Text`
-  text-align:right;
-  color: #707070C6;
+export const IdCpfContainer = styled.View`
+  flex-direction:row;
+  justify-content:space-between;
 `;
+
+
+
+
+
