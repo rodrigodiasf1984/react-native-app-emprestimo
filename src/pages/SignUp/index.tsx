@@ -1,11 +1,14 @@
-import React,{useRef} from 'react';
+import React,{
+  useRef,
+  useCallback
+} from 'react';
 import {
   Image,
-  StatusBar,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  TextInput
+  TextInput,
+  Alert
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Input from '../../components/Input';
@@ -14,7 +17,7 @@ import logoImg from '../../assets/logo.png';
 import fotoLogin from '../../assets/fotoLogin.png';
 import {Form} from '@unform/mobile';
 import {FormHandles} from '@unform/core';
-
+import * as Yup from 'yup';
 import {
   Container,
   ImageTop,
@@ -28,6 +31,15 @@ import {
   IdCpfContainer
 } from './style';
 
+import getValidationErrors from '../../utils/getValidationErrors';
+interface SignUpFormData {
+  name: string,
+  email: string,
+  cpf: string,
+  rg: string,
+  password: string,
+}
+
 const SignUp: React.FC = () =>{
   const formRef = useRef<FormHandles>(null);
   const navigation = useNavigation();
@@ -35,7 +47,39 @@ const SignUp: React.FC = () =>{
   const cpfInputRef = useRef<TextInput>(null);
   const RgInputRef = useRef<TextInput>(null);
   const passwordInputRef = useRef<TextInput>(null);
-  <StatusBar barStyle="light-content" backgroundColor="#F3903D" />
+
+  const handleSignUp = useCallback(
+    async(data: SignUpFormData) => {
+      try {
+        formRef.current?.setErrors({});
+        const schema = Yup.object().shape({
+          nome: Yup.string().required('Nome obrigatório'),
+          email: Yup.string()
+            .required('E-mail obrigatório')
+            .email('Digite um e-mail válido'),
+          cpf: Yup.string().required('CPF obrigatório'),
+          rg: Yup.string().required('RG obrigatório'),
+          password: Yup.string().required().min(6, 'No minimo 6 dígitos',)
+        });
+
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+        // fazer integração com graphql
+      } catch (err) {
+        if(err instanceof Yup.ValidationError){
+          const errors = getValidationErrors(err);
+          console.log(errors);
+          formRef.current?.setErrors(errors);
+          return;
+        }
+
+        Alert.alert(
+          'Erro no cadastro',
+          'Ocorreu um erro ao efetuar cadastro, tente novamente.',
+          );
+      }
+    },[],);
 
   return (
     <KeyboardAvoidingView
@@ -64,9 +108,7 @@ const SignUp: React.FC = () =>{
                 </ButtonText>
               </ButtonSignIn>
             </ContainerButtons>
-            <Form ref={formRef} onSubmit={(data) =>{
-              console.log(data)
-            }}>
+            <Form ref={formRef} onSubmit={handleSignUp}>
               <Input
                 autoCapitalize="words"
                 name="nome"
