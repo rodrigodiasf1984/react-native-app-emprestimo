@@ -17,6 +17,7 @@ import fotoLogin from '../../assets/fotoLogin.png';
 import {useNavigation} from '@react-navigation/native';
 import {Form} from '@unform/mobile';
 import {FormHandles} from '@unform/core';
+import {useMutation, gql} from '@apollo/client';
 
 import {
   Container,
@@ -44,7 +45,7 @@ const SignIn: React.FC = () =>{
   <StatusBar barStyle="light-content" backgroundColor="#F3903D" />
 
   const handleSubmit = useCallback(
-    async(data : SignInFormData) =>{
+    async(dataForm : SignInFormData) =>{
       try {
         formRef.current?.setErrors({});
         const schema =Yup.object().shape({
@@ -54,16 +55,25 @@ const SignIn: React.FC = () =>{
           password: Yup.string().required('Senha obrigatória'),
         });
 
-        await schema.validate(data, {
+        await schema.validate(dataForm, {
           abortEarly:false,
         });
 
-        // await SignIn({
-        //   email:data.email,
-        //   password:data.password,
-        // });
+        console.log(dataForm, 'form');
+        const GET_TOKEN = gql`
+          mutation GetToken($username: String!, $password: String!) {
+            obterToken(username: $username, password: $password) {
+              token
+            }
+          }
+        `;
 
-        //history.pushState('/dasboard');
+        const [obterToken, {data}] = useMutation(GET_TOKEN);
+        obterToken({
+          variables:{email: dataForm.email, password: dataForm.password
+        }});
+        console.log(data);
+
       } catch (err) {
         if(err instanceof Yup.ValidationError){
           const errors = getValidationErrors(err);
