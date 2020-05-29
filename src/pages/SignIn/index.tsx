@@ -1,4 +1,4 @@
-import React,{useCallback, useRef} from 'react';
+import React,{useRef} from 'react';
 import {
   Image,
   StatusBar,
@@ -11,13 +11,13 @@ import {
 import * as Yup from 'yup';
 import getValidationErrors from '../../utils/getValidationErrors';
 import Input from '../../components/Input';
-
 import logoImg from '../../assets/logo.png';
 import fotoLogin from '../../assets/fotoLogin.png';
 import {useNavigation} from '@react-navigation/native';
 import {Form} from '@unform/mobile';
 import {FormHandles} from '@unform/core';
-import {useMutation, gql} from '@apollo/client';
+import {useMutation} from '@apollo/client';
+import {GET_TOKEN } from '../../graphql/queries';
 
 import {
   Container,
@@ -38,56 +38,51 @@ interface SignInFormData{
   password: string;
 }
 
-const SignIn: React.FC = () =>{
+export default function SignIn({history}:any){
   const passwordRef = useRef<TextInput>(null);
   const formRef = useRef<FormHandles>(null);
   const navigation = useNavigation();
+
   <StatusBar barStyle="light-content" backgroundColor="#F3903D" />
 
-  const handleSubmit = useCallback(
-    async(dataForm : SignInFormData) =>{
-      try {
-        formRef.current?.setErrors({});
-        const schema =Yup.object().shape({
-          email:Yup.string()
-            .required('E-mail obrigatório')
-            .email('Digite um e-mail válido'),
-          password: Yup.string().required('Senha obrigatória'),
-        });
+  async function handleSubmit(dataForm : SignInFormData){
+      // try {
+      //   formRef.current?.setErrors({});
+      //   const schema =Yup.object().shape({
+      //     email:Yup.string()
+      //       .required('E-mail obrigatório')
+      //       .email('Digite um e-mail válido'),
+      //     password: Yup.string().required('Senha obrigatória'),
+      //   });
 
-        await schema.validate(dataForm, {
-          abortEarly:false,
-        });
+      //   await schema.validate(dataForm, {
+      //     abortEarly:false,
+      //   });
 
-        console.log(dataForm, 'form');
-        const GET_TOKEN = gql`
-          mutation GetToken($username: String!, $password: String!) {
-            obterToken(username: $username, password: $password) {
-              token
-            }
-          }
-        `;
-
-        const [obterToken, {data}] = useMutation(GET_TOKEN);
-        obterToken({
-          variables:{email: dataForm.email, password: dataForm.password
-        }});
-        console.log(data);
-
-      } catch (err) {
-        if(err instanceof Yup.ValidationError){
-          const errors = getValidationErrors(err);
-          //console.log(errors);
-          formRef.current?.setErrors(errors);
-          return;
+        const [obterToken, {error, data}] = useMutation(GET_TOKEN);
+        if(error){
+          console.log(error);
         }
+        obterToken({
+          variables:{
+            email: dataForm.email, password: dataForm.password
+        }});
 
-        Alert.alert(
-          'Erro na autenticação',
-          'Ocorreu um erro ao efetuar login, verifique as credenciais.',
-          );
-      }
-    },[],);
+      // } catch (err) {
+      //   console.log(err);
+      //   if(err instanceof Yup.ValidationError){
+      //     const errors = getValidationErrors(err);
+      //     console.log(errors);
+      //     formRef.current?.setErrors(errors);
+      //     return;
+      //   }
+
+      //   Alert.alert(
+      //     'Erro na autenticação',
+      //     'Ocorreu um erro ao efetuar login, verifique as credenciais.',
+      //     );
+      //}
+    }
 
   return (
     <KeyboardAvoidingView
@@ -158,4 +153,4 @@ const SignIn: React.FC = () =>{
   );
 };
 
-export default SignIn;
+

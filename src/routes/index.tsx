@@ -1,25 +1,84 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
-const Auth = createStackNavigator();
-
+import Profile from '../pages/Profile';
+import MyRequests from '../pages/MyRequests';
+import RequestLoan from '../pages/RequestLoan';
+import Home from '../pages/Home';
 import {ApolloProvider} from '@apollo/client';
 import client from '../services/apollo';
+import Icon from 'react-native-vector-icons/Feather';
+import {DrawerContent} from '../components/DrawContent';
 
+const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
-const AuthRoutes : React.FC = () =>(
-  <ApolloProvider client={client}>
-    <Auth.Navigator
-      screenOptions={{
-        headerShown:false,
-        cardStyle:{backgroundColor:'#F3903D'}
+const HomeStackScreen = ({navigation}) =>(
+
+    <Stack.Navigator
+    screenOptions={{
+      cardStyle:{backgroundColor:'#F3903D'}
+    }}
+    initialRouteName='Home'
+    >
+    <Stack.Screen
+      name="SignIn"
+      component={SignIn}
+      options={{headerShown:false}}
+    />
+    <Stack.Screen
+      name="SignUp"
+      component={SignUp}
+      options={{
+        headerShown:false}}
+    />
+    <Stack.Screen
+      name="Perfil"
+      component={Profile}
+
+    />
+    <Stack.Screen
+      name="Home"
+      component={Home}
+      options={{
+        headerTitle:'Olá, Maria!',
+        headerTitleAlign:'center',
+        headerTintColor:'#fff',
+        headerRight:()=> (
+          <Icon.Button
+            name="menu" size={25}
+            backgroundColor="#F3903D"
+            onPress={() => navigation.toggleDrawer()}></Icon.Button>
+        ),
+        headerStyle:{
+          backgroundColor:'#F3903D',
+          elevation:0,
+          shadowOpacity:0,
+        }
       }}
+    />
+  </Stack.Navigator>
+);
+
+const Routes : React.FC = () =>(
+  <ApolloProvider client={client}>
+    <Drawer.Navigator
+      drawerPosition="right"
+      initialRouteName="Home"
+      drawerContent={props => <DrawerContent{...props}/>}
       >
-      <Auth.Screen name="SignIn" component={SignIn}/>
-      <Auth.Screen name="SignUp" component={SignUp}/>
-    </Auth.Navigator>
+      <Drawer.Screen
+        name="Home"
+        component={HomeStackScreen}
+      />
+      <Drawer.Screen name="Perfil" component={Profile}/>
+      <Drawer.Screen name="Minhas solicitações" component={MyRequests}/>
+      <Drawer.Screen name="Solicitar empréstimo" component={RequestLoan}/>
+    </Drawer.Navigator>
   </ApolloProvider>
 );
 
-export default AuthRoutes;
+export default Routes;
