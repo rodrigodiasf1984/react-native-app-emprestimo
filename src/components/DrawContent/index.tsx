@@ -1,19 +1,9 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 import {DrawerContainer, DrawerSection, BottomDrawerSection} from './styles';
 import {DrawerContentScrollView, DrawerItem}from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/Feather';
-import {
-  Title,
-  Caption,
-  Paragraph,
-  Drawer,
-  TouchableRipple,
-  Switch
-} from 'react-native-paper';
-import { color } from 'react-native-reanimated';
 
-export function DrawerContent(props){
+export function DrawerContent(props : any){
   return(
     <DrawerContainer>
       <DrawerContentScrollView {...props}>

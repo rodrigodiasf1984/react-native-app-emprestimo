@@ -3,6 +3,7 @@ import {Text} from 'react-native';
 import Button from '../../components/Button';
 import {getBottomSpace} from 'react-native-iphone-x-helper';
 
+
 export const ContainerPrincipal = styled.View`
   background:#fff;
   width:100%;
@@ -63,7 +64,7 @@ export const BtnRequestLoan = styled(Button)`
   width:90%;
 
 `;
-export const ButtonText = styled.Text`
+export const ButtonText = styled(Text)`
   font-family:'HelveticaNeue Medium';
   color:#FFFFFF;
   font-size:24px;

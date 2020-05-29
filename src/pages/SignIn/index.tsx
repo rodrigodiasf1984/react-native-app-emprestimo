@@ -11,13 +11,15 @@ import {
 import * as Yup from 'yup';
 import getValidationErrors from '../../utils/getValidationErrors';
 import Input from '../../components/Input';
-import logoImg from '../../assets/logo.png';
-import fotoLogin from '../../assets/fotoLogin.png';
+import LogoImg from '../../assets/logo.png';
+import FotoLogin from '../../assets/fotoLogin.png';
 import {useNavigation} from '@react-navigation/native';
 import {Form} from '@unform/mobile';
 import {FormHandles} from '@unform/core';
 import {useMutation} from '@apollo/client';
 import {GET_TOKEN } from '../../graphql/queries';
+import FeatherIcon from 'react-native-vector-icons/Feather';
+import Background from '../../components/Background';
 
 import {
   Container,
@@ -31,6 +33,8 @@ import {
   ButtonText,
   ForgotPassword,
   ForgotPasswordText,
+  Header,
+  Footer
 } from './styles';
 
 interface SignInFormData{
@@ -85,20 +89,27 @@ export default function SignIn({history}:any){
     }
 
   return (
-    <KeyboardAvoidingView
+
+    <Background>
+       <KeyboardAvoidingView
       style={{flex:1}}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       enabled
     >
-      <ScrollView
-        keyboardShouldPersistTaps="handled"
-      >
-        <Container>
-          <ImageTop source={fotoLogin}/>
-          <Logo>
-            <Image source={logoImg} />
+      <Container>
+        <Header>
+          <ImageTop source={FotoLogin}/>
+          <Logo
+            animation="fadeInUpBig"
+          >
+            <Image
+              source={LogoImg}
+            />
           </Logo>
-          <ContainerBottom>
+        </Header>
+        <Footer
+            animation="fadeInUpBig"
+          >
             <ContainerButtons>
               <ButtonLogin onPress={()=> navigation.navigate('SignIn')}>
                 <ButtonText>
@@ -111,8 +122,9 @@ export default function SignIn({history}:any){
                 </ButtonText>
               </ButtonSignIn >
             </ContainerButtons>
-            <Form ref={formRef} onSubmit={handleSubmit}>
-              <Input
+            <ContainerBottom>
+             <Form ref={formRef} onSubmit={handleSubmit}>
+               <Input
                 autoCorrect={false}
                 autoCapitalize="none"
                 keyboardType="email-address"
@@ -124,9 +136,10 @@ export default function SignIn({history}:any){
                     passwordRef.current?.focus();
                   }}
                 />
+
               <Input
                 ref={passwordRef}
-                secureTextEntry
+                secureTextEntry={true}
                 name="password"
                 icon="lock"
                 placeholder="Senha"
@@ -147,9 +160,10 @@ export default function SignIn({history}:any){
               </SubmitButton>
             </Form>
           </ContainerBottom>
-        </Container>
-      </ScrollView>
-    </KeyboardAvoidingView>
+        </Footer>
+      </Container>
+      </KeyboardAvoidingView>
+    </Background>
   );
 };
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import Profile from '../pages/Profile';
+import SplashScreen from '../pages/SplashScreen';
 import MyRequests from '../pages/MyRequests';
 import RequestLoan from '../pages/RequestLoan';
 import Home from '../pages/Home';
@@ -16,14 +16,19 @@ import {DrawerContent} from '../components/DrawContent';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
-const HomeStackScreen = ({navigation}) =>(
+const HomeStackScreen = ({navigation}:any) =>(
 
     <Stack.Navigator
     screenOptions={{
       cardStyle:{backgroundColor:'#F3903D'}
     }}
-    initialRouteName='Home'
+    initialRouteName='SignIn'
     >
+    <Stack.Screen
+      name="SplashScreen"
+      component={SplashScreen}
+      options={{headerShown:false}}
+    />
     <Stack.Screen
       name="SignIn"
       component={SignIn}

@@ -2,33 +2,41 @@ import styled from 'styled-components/native';
 import {Image} from 'react-native';
 import Button from '../../components/Button';
 import {getBottomSpace} from 'react-native-iphone-x-helper';
-export const Container = styled.SafeAreaView`
-  margin-top:-150px;
+import * as Animatable from 'react-native-animatable';
+
+export const Header = styled.View`
+  margin-top:-50px;
   flex:1;
-  color:#F3903D;
-  align-items:center;
   justify-content:center;
-  padding: 0px;
+  align-items:center;
+
 `;
 
-export const Logo = styled.View`
-  margin-top:-250px;
+export const Footer = styled(Animatable.View)`
+  flex:1;
+  background-color: #fff;
+  border-top-left-radius:60px;
+  border-top-right-radius: 60px;
+  padding:15px;
+  margin-top:30px;
+`;
+
+export const Container = styled.View`
+  flex:1;
+`;
+
+export const Logo = styled(Animatable.View)`
+  margin-top:-240px;
 `;
 
 export const ImageTop = styled(Image)`
-  margin-top:150px;
+  margin-top:30px;
   opacity:0.5;
+
 `;
 
 export const ContainerBottom = styled.View`
-  margin-top:35px;
-  background:#fff;
-  width:100%;
-  height:350px;
-  border-top-left-radius: 60px;
-  border-top-right-radius: 60px;
-  padding:30px 30px ;
-  elevation:5;
+  margin-top:-10px;
 
 `;
 
@@ -43,10 +51,11 @@ export const SubmitButton = styled(Button)`
 `;
 
 export const ContainerButtons= styled.View`
-  margin-top:-55px;
+  margin-top:-45px;
   margin-bottom:0px;
   flex-direction:row;
   width:100%;
+  padding:10px;
 
 `;
 
@@ -87,4 +96,12 @@ export const ForgotPassword = styled.TouchableOpacity``;
 export const ForgotPasswordText = styled.Text`
   text-align:right;
   color: #707070C6;
+`;
+
+export const Action = styled.View`
+  flex-direction:'row';
+  margin-top: 10px;
+  border-bottom-width:1px;
+  padding:5px;
+
 `;
