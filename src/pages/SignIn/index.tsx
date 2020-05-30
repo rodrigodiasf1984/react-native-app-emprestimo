@@ -1,4 +1,4 @@
-import React,{useRef} from 'react';
+import React,{useRef, useState} from 'react';
 import {
   Image,
   StatusBar,
@@ -6,7 +6,8 @@ import {
   Platform,
   ScrollView,
   TextInput,
-  Alert
+  Alert,
+  ActivityIndicator
 } from 'react-native';
 import * as Yup from 'yup';
 import getValidationErrors from '../../utils/getValidationErrors';
@@ -34,7 +35,8 @@ import {
   ForgotPassword,
   ForgotPasswordText,
   Header,
-  Footer
+  Footer,
+  Loading
 } from './styles';
 
 interface SignInFormData{
@@ -46,22 +48,24 @@ export default function SignIn({history}:any){
   const passwordRef = useRef<TextInput>(null);
   const formRef = useRef<FormHandles>(null);
   const navigation = useNavigation();
+  const [isLoading, setIsLoading]=useState(true);
+  const [userToken, setUserToken]=useState(null);
 
-  <StatusBar barStyle="light-content" backgroundColor="#F3903D" />
+  // <StatusBar barStyle="light-content" backgroundColor="#F3903D" />
 
   async function handleSubmit(dataForm : SignInFormData){
-      // try {
-      //   formRef.current?.setErrors({});
-      //   const schema =Yup.object().shape({
-      //     email:Yup.string()
-      //       .required('E-mail obrigatório')
-      //       .email('Digite um e-mail válido'),
-      //     password: Yup.string().required('Senha obrigatória'),
-      //   });
+      try {
+        formRef.current?.setErrors({});
+        const schema =Yup.object().shape({
+          email:Yup.string()
+            .required('E-mail obrigatório')
+            .email('Digite um e-mail válido'),
+          password: Yup.string().required('Senha obrigatória'),
+        });
 
-      //   await schema.validate(dataForm, {
-      //     abortEarly:false,
-      //   });
+        await schema.validate(dataForm, {
+          abortEarly:false,
+        });
 
         const [obterToken, {error, data}] = useMutation(GET_TOKEN);
         if(error){
@@ -72,35 +76,45 @@ export default function SignIn({history}:any){
             email: dataForm.email, password: dataForm.password
         }});
 
-      // } catch (err) {
-      //   console.log(err);
-      //   if(err instanceof Yup.ValidationError){
-      //     const errors = getValidationErrors(err);
-      //     console.log(errors);
-      //     formRef.current?.setErrors(errors);
-      //     return;
-      //   }
+      } catch (err) {
+        console.log(err);
+        if(err instanceof Yup.ValidationError){
+          const errors = getValidationErrors(err);
+          console.log(errors);
+          formRef.current?.setErrors(errors);
+          return;
+        }
 
-      //   Alert.alert(
-      //     'Erro na autenticação',
-      //     'Ocorreu um erro ao efetuar login, verifique as credenciais.',
-      //     );
-      //}
+        Alert.alert(
+          'Erro na autenticação',
+          'Ocorreu um erro ao efetuar login, verifique as credenciais.',
+          );
+      }
     }
+
+    // if(isLoading){
+    //   return (
+    //     <Loading>
+    //       <ActivityIndicator size="large"/>
+    //     </Loading>
+    //   )
+    // }
 
   return (
 
     <Background>
        <KeyboardAvoidingView
-      style={{flex:1}}
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      enabled
-    >
-      <Container>
+          style={{flex:1}}
+          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+          enabled
+        >
+      <Container
+
+      >
         <Header>
           <ImageTop source={FotoLogin}/>
           <Logo
-            animation="fadeInUpBig"
+            animation="bounceIn"
           >
             <Image
               source={LogoImg}
@@ -108,7 +122,7 @@ export default function SignIn({history}:any){
           </Logo>
         </Header>
         <Footer
-            animation="fadeInUpBig"
+            animation="lightSpeedIn"
           >
             <ContainerButtons>
               <ButtonLogin onPress={()=> navigation.navigate('SignIn')}>

@@ -21,7 +21,7 @@ export const Footer = styled(Animatable.View)`
   margin-top:30px;
 `;
 
-export const Container = styled.View`
+export const Container = styled(Animatable.View)`
   flex:1;
 `;
 
@@ -98,10 +98,9 @@ export const ForgotPasswordText = styled.Text`
   color: #707070C6;
 `;
 
-export const Action = styled.View`
-  flex-direction:'row';
-  margin-top: 10px;
-  border-bottom-width:1px;
-  padding:5px;
 
+export const Loading  =  styled.View`
+  flex:1;
+  justify-content:center;
+  align-items:center;
 `;
