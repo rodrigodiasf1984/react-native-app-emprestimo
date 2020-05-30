@@ -98,9 +98,7 @@ export const ForgotPasswordText = styled.Text`
   color: #707070C6;
 `;
 
-
-export const Loading  =  styled.View`
-  flex:1;
-  justify-content:center;
-  align-items:center;
+export const TextError = styled.Text`
+   color: #FF0000;
+   font-size: 14px;
 `;

@@ -5,7 +5,8 @@ import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import Profile from '../pages/Profile';
 import SplashScreen from '../pages/SplashScreen';
-import ValidatePhoneNumber from '../pages/ValidatePhoneNumber';
+import ValidatePhoneNumber from '../pages/ValidatePhoneNumber'
+import ValidationCode from '../pages/ValidationCode';
 import MyRequests from '../pages/MyRequests';
 import RequestLoan from '../pages/RequestLoan';
 import Home from '../pages/Home';
@@ -23,7 +24,7 @@ const HomeStackScreen = ({navigation}:any) =>(
     screenOptions={{
       cardStyle:{backgroundColor:'#F3903D'}
     }}
-    initialRouteName='ValidatePhoneNumber'
+    initialRouteName='RequestLoan'
     >
     <Stack.Screen
       name="SplashScreen"
@@ -41,15 +42,24 @@ const HomeStackScreen = ({navigation}:any) =>(
       options={{
         headerShown:false}}
     />
-     <Stack.Screen
+    <Stack.Screen
       name="ValidatePhoneNumber"
       component={ValidatePhoneNumber}
       options={{headerShown:false}}
     />
     <Stack.Screen
+      name="ValidationCode"
+      component={ValidationCode}
+      options={{headerShown:false}}
+    />
+     <Stack.Screen
+      name="RequestLoan"
+      component={RequestLoan}
+      options={{headerShown:false}}
+    />
+    <Stack.Screen
       name="Perfil"
       component={Profile}
-
     />
     <Stack.Screen
       name="Home"

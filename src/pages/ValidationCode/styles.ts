@@ -1,9 +1,6 @@
 import styled from 'styled-components/native';
 import {Text, TextInput} from 'react-native';
-import Button from '../../components/Button';
-import {getBottomSpace} from 'react-native-iphone-x-helper';
 import * as Animatable from 'react-native-animatable';
-
 
 
 export const ContainerPrincipal = styled.View`
@@ -13,20 +10,23 @@ export const ContainerPrincipal = styled.View`
 `;
 
 export const Container = styled.View`
-  margin-top:-50px;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  padding:50px;
+`;
+
+export const ContainerIcons = styled.TouchableOpacity`
+  flex-direction:row;
+  justify-content:center;
+  align-items:baseline;
 `;
 
 export const Title = styled(Text)`
   margin-top:10px;
   color: #FFFFFF;
-  font-size:40px;
+  font-size:30px;
   font-family:'HelveticaNeue medium';
-  padding:30px;
-  margin-left:65px;
+  margin-left:0px;
 
 `;
 
@@ -38,35 +38,27 @@ export const TextMessage = styled(Text)`
   margin-left:0px;
 `;
 
-export const InputQuantity = styled(TextInput).attrs({
+export const TextIcons = styled(Text)`
+  margin-top:40px;
+  color: #FFFFFF;
+  font-size:25px;
+  font-family:'HelveticaNeue medium';
+  margin-left:10px;
+
+`;
+
+export const BigInput = styled(TextInput).attrs({
   placeholderTextColor: "white"
 })`
-  margin-left:-20px;
+  align-self: center;;
   text-decoration-color:#FFFFFF;
   font-size:30px;
   font-family:'HelveticaNeue medium';
   text-decoration:underline;
 `;
 
-
-export const InputValue = styled(TextInput).attrs({
-  placeholderTextColor: "white"
-})`
-  margin-left:-220px;
-  text-decoration-color:#FFFFFF;
-  font-size:30px;
-  font-family:'HelveticaNeue medium';
-  text-decoration:underline;
-`;
-
-export const SubmitButton = styled(Button)`
-  width:70%;
-  align-self: center;
-  margin-top: 2px;
-  background: #F2F2F2;
-  border-radius:20px;
-  elevation:5;
-  padding:5px 0 ${5 + getBottomSpace()}px;
+export const Logo = styled(Animatable.View)`
+   margin-top: 50px;
 `;
 
 export const SmallLine =styled(Text)`
@@ -77,4 +69,4 @@ export const SmallLine =styled(Text)`
   margin-left:0px;
 `;
 
-
+export const BtnIcon = styled.TouchableOpacity``;

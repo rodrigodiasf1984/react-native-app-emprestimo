@@ -36,7 +36,7 @@ const ValidatePhoneNumber: React.FC = () => {
               source={LogoImg}
             />
           </Logo>
-        <SubmitButton onPress={()=>{navigation.navigate('')}}>
+        <SubmitButton onPress={()=>{navigation.navigate('ValidationCode')}}>
           AVANÇAR
         </SubmitButton>
       </ContainerPrincipal>

@@ -3,7 +3,6 @@ import Button from '../../components/Button';
 import {getBottomSpace} from 'react-native-iphone-x-helper';
 import * as Animatable from 'react-native-animatable';
 import {Text, TextInput} from 'react-native';
-import { BottomDrawerSection } from '../../components/DrawContent/styles';
 
 export const ContainerPrincipal = styled.View`
   flex-direction:column;

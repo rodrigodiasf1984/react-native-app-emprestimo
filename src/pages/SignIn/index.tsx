@@ -1,13 +1,10 @@
 import React,{useRef, useState} from 'react';
 import {
   Image,
-  StatusBar,
   KeyboardAvoidingView,
   Platform,
-  ScrollView,
   TextInput,
   Alert,
-  ActivityIndicator
 } from 'react-native';
 import * as Yup from 'yup';
 import getValidationErrors from '../../utils/getValidationErrors';
@@ -19,7 +16,6 @@ import {Form} from '@unform/mobile';
 import {FormHandles} from '@unform/core';
 import {useMutation} from '@apollo/client';
 import {GET_TOKEN } from '../../graphql/queries';
-import FeatherIcon from 'react-native-vector-icons/Feather';
 import Background from '../../components/Background';
 
 import {
@@ -36,7 +32,7 @@ import {
   ForgotPasswordText,
   Header,
   Footer,
-  Loading
+  TextError
 } from './styles';
 
 interface SignInFormData{
@@ -48,8 +44,9 @@ export default function SignIn({history}:any){
   const passwordRef = useRef<TextInput>(null);
   const formRef = useRef<FormHandles>(null);
   const navigation = useNavigation();
-  const [isLoading, setIsLoading]=useState(true);
-  const [userToken, setUserToken]=useState(null);
+  const [userToken, setUserToken]= useState(null);
+  const [errorMail, setErroMail]= useState('');
+  const [errorPassword, setErrorPassword]= useState('');
 
   // <StatusBar barStyle="light-content" backgroundColor="#F3903D" />
 
@@ -80,6 +77,9 @@ export default function SignIn({history}:any){
         console.log(err);
         if(err instanceof Yup.ValidationError){
           const errors = getValidationErrors(err);
+          // errors.forEach(element => {
+
+          // });
           console.log(errors);
           formRef.current?.setErrors(errors);
           return;
@@ -150,7 +150,7 @@ export default function SignIn({history}:any){
                     passwordRef.current?.focus();
                   }}
                 />
-
+                <TextError>Teste Error</TextError>
               <Input
                 ref={passwordRef}
                 secureTextEntry={true}
