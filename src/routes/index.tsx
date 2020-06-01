@@ -11,6 +11,7 @@ import MyRequests from '../pages/MyRequests';
 import RequestLoan from '../pages/RequestLoan';
 import RegisterCreditCard from '../pages/RegisterCreditCard';
 import Home from '../pages/Home';
+import Details from '../pages/Details';
 import {ApolloProvider} from '@apollo/client';
 import client from '../services/apollo';
 import Icon from 'react-native-vector-icons/Feather';
@@ -20,12 +21,11 @@ const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const HomeStackScreen = ({navigation}:any) =>(
-
     <Stack.Navigator
     screenOptions={{
       cardStyle:{backgroundColor:'#F3903D'}
     }}
-    initialRouteName='RegisterCreditCard'
+    initialRouteName='Details'
     >
     <Stack.Screen
       name="SplashScreen"
@@ -61,7 +61,13 @@ const HomeStackScreen = ({navigation}:any) =>(
      <Stack.Screen
       name="RegisterCreditCard"
       component={RegisterCreditCard}
-      options={{headerShown:false}}
+      options={
+        RegisterCreditCard.navigationOptions
+      }
+    />
+    <Stack.Screen
+      name="Details"
+      component={Details}
     />
     <Stack.Screen
       name="Perfil"
