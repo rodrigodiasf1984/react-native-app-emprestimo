@@ -1,8 +1,8 @@
 import { Text } from "react-native";
 import styled from 'styled-components/native';
 import Button from '../../components/Button';
-import * as Animatable from 'react-native-animatable';
 import {getBottomSpace} from 'react-native-iphone-x-helper';
+import * as Animatable from 'react-native-animatable';
 
 export const Header = styled.View`
   flex:2;

@@ -62,7 +62,6 @@ export const BtnRequestLoan = styled(Button)`
   margin:5px;
   padding:5px 0 ${5 + getBottomSpace()}px;
   width:90%;
-
 `;
 export const ButtonText = styled(Text)`
   font-family:'HelveticaNeue Medium';

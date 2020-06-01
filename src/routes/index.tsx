@@ -68,6 +68,7 @@ const HomeStackScreen = ({navigation}:any) =>(
     <Stack.Screen
       name="Details"
       component={Details}
+      options={{headerShown:false}}
     />
     <Stack.Screen
       name="Perfil"
