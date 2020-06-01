@@ -1,18 +1,14 @@
 import React,{useRef} from 'react';
-import { View } from 'react-native';
 import Background from '../../components/Background';
 import {Form} from '@unform/mobile';
 import {FormHandles} from '@unform/core';
 import Input from '../../components/Input';
 import {useNavigation} from '@react-navigation/native';
-
-import {
-  Container,
-  ContainerPrincipal,
-  Title,
-  TextMessage,
-  SubmitButton,
-} from './styles';
+import Title from '../../components/Title';
+import TextMessage from '../../components/TextMessage';
+import Container from '../../components/Container';
+import ContainerPrincipal from '../../components/ContainerPrincipal'
+import SubmitButton from '../../components/SubmitButton';
 
 const RequestLoan: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
@@ -26,7 +22,7 @@ const RequestLoan: React.FC = () => {
               <Input
                 autoCorrect={false}
                 autoCapitalize="none"
-                keyboardType="email-address"
+                keyboardType="numeric"
                 name="Valor"
                 placeholder="Valor(R$)"
                 returnKeyType="next"
@@ -53,18 +49,12 @@ const RequestLoan: React.FC = () => {
                 onSubmitEditing={()=>{}}
                 />
               </Container>
-              <SubmitButton
-                onPress={()=>{
-                  formRef.current?.submitForm();
-                }}
-              >
-               AVANÇAR
-            </SubmitButton>
+              <SubmitButton onPress={()=>{navigation.navigate('RegisterCreditCard')}}>
+                AVANÇAR
+              </SubmitButton>
           </Form>
       </ContainerPrincipal>
     </Background>
-
   );
 }
-
 export default RequestLoan;

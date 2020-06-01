@@ -9,6 +9,7 @@ import ValidatePhoneNumber from '../pages/ValidatePhoneNumber'
 import ValidationCode from '../pages/ValidationCode';
 import MyRequests from '../pages/MyRequests';
 import RequestLoan from '../pages/RequestLoan';
+import RegisterCreditCard from '../pages/RegisterCreditCard';
 import Home from '../pages/Home';
 import {ApolloProvider} from '@apollo/client';
 import client from '../services/apollo';
@@ -24,7 +25,7 @@ const HomeStackScreen = ({navigation}:any) =>(
     screenOptions={{
       cardStyle:{backgroundColor:'#F3903D'}
     }}
-    initialRouteName='RequestLoan'
+    initialRouteName='RegisterCreditCard'
     >
     <Stack.Screen
       name="SplashScreen"
@@ -55,6 +56,11 @@ const HomeStackScreen = ({navigation}:any) =>(
      <Stack.Screen
       name="RequestLoan"
       component={RequestLoan}
+      options={{headerShown:false}}
+    />
+     <Stack.Screen
+      name="RegisterCreditCard"
+      component={RegisterCreditCard}
       options={{headerShown:false}}
     />
     <Stack.Screen
