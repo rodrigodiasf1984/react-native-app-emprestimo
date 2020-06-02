@@ -20,12 +20,13 @@ import {DrawerContent} from '../components/DrawContent';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
+
 const HomeStackScreen = ({navigation}:any) =>(
     <Stack.Navigator
     screenOptions={{
       cardStyle:{backgroundColor:'#F3903D'}
     }}
-    initialRouteName='Details'
+    initialRouteName='MyRequests'
     >
     <Stack.Screen
       name="SplashScreen"
@@ -56,19 +57,78 @@ const HomeStackScreen = ({navigation}:any) =>(
      <Stack.Screen
       name="RequestLoan"
       component={RequestLoan}
-      options={{headerShown:false}}
+      options={{
+        headerTitle:'',
+        headerTintColor:'#fff',
+        headerLeft:()=> (
+          <Icon.Button
+            name="arrow-left" size={25}
+            backgroundColor="#F3903D"
+            onPress={() => navigation.navigate('Home')}></Icon.Button>
+        ),
+        headerStyle:{
+          backgroundColor:'#F3903D',
+          elevation:0,
+          shadowOpacity:0,
+        }
+      }}
+    />
+    <Stack.Screen
+      name="MyRequests"
+      component={MyRequests}
+      options={{
+        headerTitle:'',
+        headerTintColor:'#fff',
+        headerLeft:()=> (
+          <Icon.Button
+            name="arrow-left" size={25} color="#F3903D"
+            backgroundColor="#FFFFFF"
+            onPress={() => navigation.navigate('Home')}></Icon.Button>
+        ),
+        headerStyle:{
+          backgroundColor:'#FFFFFF',
+          elevation:0,
+          shadowOpacity:0,
+        }
+      }}
     />
      <Stack.Screen
       name="RegisterCreditCard"
       component={RegisterCreditCard}
-      options={
-        RegisterCreditCard.navigationOptions
-      }
+      options={{
+        headerTitle:'',
+        headerTintColor:'#fff',
+        headerLeft:()=> (
+          <Icon.Button
+            name="arrow-left" size={25}
+            backgroundColor="#F3903D"
+            onPress={() => navigation.navigate('RequestLoan')}></Icon.Button>
+        ),
+        headerStyle:{
+          backgroundColor:'#F3903D',
+          elevation:0,
+          shadowOpacity:0,
+        }
+      }}
     />
     <Stack.Screen
       name="Details"
       component={Details}
-      options={{headerShown:false}}
+      options={{
+        headerTitle:'',
+        headerTintColor:'#fff',
+        headerLeft:()=> (
+          <Icon.Button
+            name="arrow-left" size={25}
+            backgroundColor="#F3903D"
+            onPress={() => navigation.navigate('RegisterCreditCard')}></Icon.Button>
+        ),
+        headerStyle:{
+          backgroundColor:'#F3903D',
+          elevation:0,
+          shadowOpacity:0,
+        }
+      }}
     />
     <Stack.Screen
       name="Perfil"
@@ -78,6 +138,7 @@ const HomeStackScreen = ({navigation}:any) =>(
       name="Home"
       component={Home}
       options={{
+
         headerTitle:'Olá, Maria!',
         headerTitleAlign:'center',
         headerTintColor:'#fff',

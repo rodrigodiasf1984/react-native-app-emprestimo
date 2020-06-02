@@ -66,6 +66,7 @@ const SignUp: React.FC = () =>{
           abortEarly: false,
         });
         // fazer integração com graphql
+        navigation.navigate('ValidatePhoneNumber')
       } catch (err) {
         if(err instanceof Yup.ValidationError){
           const errors = getValidationErrors(err);

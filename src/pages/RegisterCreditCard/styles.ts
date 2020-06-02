@@ -23,12 +23,12 @@ export const CustomInput = styled.TextInput.attrs({
 `;
 
 export const SubmitButton = styled(SubButton)`
-  margin-top:-170px;
+  margin-top:-157px;
 
 `;
 
 export const Title = styled(defaultTitle)`
-  margin-top:30px;
+  margin-top:-40px;
   margin-left:20px;
   margin-bottom:-20px;
   font-size:30px;

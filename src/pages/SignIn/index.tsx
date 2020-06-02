@@ -64,14 +64,15 @@ export default function SignIn({history}:any){
           abortEarly:false,
         });
 
-        const [obterToken, {error, data}] = useMutation(GET_TOKEN);
-        if(error){
-          console.log(error);
-        }
-        obterToken({
-          variables:{
-            email: dataForm.email, password: dataForm.password
-        }});
+        // const [obterToken, {error, data}] = useMutation(GET_TOKEN);
+        // if(error){
+        //   console.log(error);
+        // }
+        // obterToken({
+        //   variables:{
+        //     email: dataForm.email, password: dataForm.password
+        // }});
+        navigation.navigate('Home');
 
       } catch (err) {
         console.log(err);
@@ -150,7 +151,7 @@ export default function SignIn({history}:any){
                     passwordRef.current?.focus();
                   }}
                 />
-                <TextError>Teste Error</TextError>
+                {/* <TextError>Teste Error</TextError> */}
               <Input
                 ref={passwordRef}
                 secureTextEntry={true}

@@ -43,7 +43,7 @@ export const ContainerBottom = styled.View`
 export const SubmitButton = styled(Button)`
   width:70%;
   align-self: center;
-  margin-top: 42px;
+  margin-top: 22px;
   background: #F2F2F2;
   border-radius:20px;
   elevation:5;

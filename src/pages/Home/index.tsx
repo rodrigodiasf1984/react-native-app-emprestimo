@@ -63,7 +63,7 @@ const navigation = useNavigation();
           </TextMedium>
         </Container>
       </ScrollView>
-        <BtnRequestLoan>
+        <BtnRequestLoan onPress={()=>{navigation.navigate('RequestLoan')}}>
           <ButtonText>
             Solicitar empréstimo
           </ButtonText>
