@@ -21,13 +21,12 @@ import {DrawerContent} from '../components/DrawContent';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
-
 const HomeStackScreen = ({navigation}:any) =>(
     <Stack.Navigator
     screenOptions={{
       cardStyle:{backgroundColor:'#F3903D'}
     }}
-    initialRouteName='Home'
+    initialRouteName='Perfil'
     >
     <Stack.Screen
       name="SplashScreen"
@@ -152,6 +151,30 @@ const HomeStackScreen = ({navigation}:any) =>(
     <Stack.Screen
       name="Perfil"
       component={Profile}
+      options={{
+
+        headerTitle:'',
+        headerTitleAlign:'center',
+        headerTintColor:'#fff',
+        headerRight:()=> (
+          <Icon.Button
+            name="menu" size={25}
+            backgroundColor="#FFFFFF"
+            color="#F3903D"
+            onPress={() => navigation.toggleDrawer()}></Icon.Button>
+        ),
+        headerLeft:()=> (
+          <Icon.Button
+            name="arrow-left" size={25} color="#F3903D"
+            backgroundColor="#FFFFFF"
+            onPress={() => navigation.navigate('Home')}></Icon.Button>
+        ),
+        headerStyle:{
+          backgroundColor:'#FFFFFF',
+          elevation:0,
+          shadowOpacity:0,
+        }
+      }}
     />
     <Stack.Screen
       name="Home"
