@@ -1,18 +1,9 @@
 import styled from 'styled-components/native';
 import * as Animatable from 'react-native-animatable';
 import TextMessage from '../../components/TextMessage';
-import Button from '../../components/Button';
-import {getBottomSpace} from 'react-native-iphone-x-helper';
-import DefaultTitle from '../../components/Title';
-import {Text} from 'react-native';
-
-
-export const Container = styled(Animatable.View)`
-  flex:1;
-`;
 
 export const Header = styled.View`
-  margin-top:10px;
+  margin-top:0px;
   flex:1;
   justify-content:center;
   align-items:center;
@@ -30,16 +21,17 @@ export const Footer = styled(Animatable.View)`
 
 export const Label = styled(TextMessage)`
   color:#F3903D;
-  font-size:15px;
+  font-size:18px;
 `;
 export const Value = styled(TextMessage)`
   margin-top:-5px;
   margin-left:10px;
   color:#F3903D;
-  font-size:20px;
+  font-size:18px;
 `;
 
-export const DetailsLoan = styled.View`
+export const DetailsClientLoan = styled.View`
+  margin-top:-20px;
   border-bottom-width:1px;
   border-bottom-color:#eeeeee;
 `;
@@ -50,7 +42,7 @@ export const DetailsClient = styled.View`
 export const CustomText = styled(TextMessage)`
   width:50%;
   color:#F3903D;
-  font-size:20px;
+  font-size:18px;
 `;
 
 export const CustomValue = styled(TextMessage)`
@@ -58,7 +50,7 @@ export const CustomValue = styled(TextMessage)`
   margin-top:-5px;
   margin-left:10px;
   color:#F3903D;
-  font-size:25px;
+  font-size:18px;
 `;
 
 export const Data = styled.View`
@@ -68,28 +60,8 @@ export const Data = styled.View`
 
 `;
 
-export const BtnConfirmLoan = styled(Button)`
-  background:#F3903D;
-  align-self: center;
-  border-radius:30px;
-  elevation:5;
-  margin-top:50px;
-  padding:5px 0 ${5 + getBottomSpace()}px;
-  width:90%;
-
-`;
-
-export const ButtonText = styled(Text)`
-  font-family:'HelveticaNeue Medium';
-  color:#FFFFFF;
-  font-size:24px;
-`;
-
-export const Title = styled(DefaultTitle)`
-  font-size:30px;
-`;
-
 export const ContainerIcon = styled.TouchableOpacity`
+  margin-right:20px;
   background-color:#F3903D;
   width:50px;
   height:50px;
@@ -98,8 +70,13 @@ export const ContainerIcon = styled.TouchableOpacity`
   align-items:center;
 `;
 
-export const TextIcon = styled(TextMessage)`
-  width:60%;
-  color:#F3903D;
-  font-size:20px;
+export const ContainerIcons  = styled.View`
+  margin-top:15px;
+  flex:1;
+  flex-direction:row;
+  align-content:center;
+  justify-content:center;
+  width:100%;
+
+
 `;

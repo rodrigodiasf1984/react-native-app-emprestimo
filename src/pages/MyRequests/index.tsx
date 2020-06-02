@@ -16,9 +16,9 @@ import {
 
 
 
-const MyRequests: React.FC = () => {
+const MyRequests: React.FC = ({navigation}:any) => {
 
-  const loans= [
+const loans= [
  {
    id:'1',
    date:'10/11/2019',
@@ -76,7 +76,7 @@ const MyRequests: React.FC = () => {
               <Label>Data</Label>
               <Label>Valor do empréstimo</Label>
             </LabelContainer>
-              <LoanDetailsIcon>
+              <LoanDetailsIcon onPress={()=>{navigation.navigate('DetailsLoan')}}>
                 <Icon name="arrow-right" size={25} color="#F3903D"/>
               </LoanDetailsIcon>
             <LabelValueContainer>

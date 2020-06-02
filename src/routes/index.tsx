@@ -12,6 +12,7 @@ import RequestLoan from '../pages/RequestLoan';
 import RegisterCreditCard from '../pages/RegisterCreditCard';
 import Home from '../pages/Home';
 import Details from '../pages/Details';
+import DetailsLoan from '../pages/DetailsLoan';
 import {ApolloProvider} from '@apollo/client';
 import client from '../services/apollo';
 import Icon from 'react-native-vector-icons/Feather';
@@ -26,7 +27,7 @@ const HomeStackScreen = ({navigation}:any) =>(
     screenOptions={{
       cardStyle:{backgroundColor:'#F3903D'}
     }}
-    initialRouteName='MyRequests'
+    initialRouteName='Home'
     >
     <Stack.Screen
       name="SplashScreen"
@@ -78,7 +79,6 @@ const HomeStackScreen = ({navigation}:any) =>(
       component={MyRequests}
       options={{
         headerTitle:'',
-        headerTintColor:'#fff',
         headerLeft:()=> (
           <Icon.Button
             name="arrow-left" size={25} color="#F3903D"
@@ -122,6 +122,25 @@ const HomeStackScreen = ({navigation}:any) =>(
             name="arrow-left" size={25}
             backgroundColor="#F3903D"
             onPress={() => navigation.navigate('RegisterCreditCard')}></Icon.Button>
+        ),
+        headerStyle:{
+          backgroundColor:'#F3903D',
+          elevation:0,
+          shadowOpacity:0,
+        }
+      }}
+    />
+    <Stack.Screen
+      name="DetailsLoan"
+      component={DetailsLoan}
+      options={{
+        headerTitle:'',
+        headerTintColor:'#fff',
+        headerLeft:()=> (
+          <Icon.Button
+            name="arrow-left" size={25}
+            backgroundColor="#F3903D"
+            onPress={() => navigation.navigate('MyRequests')}></Icon.Button>
         ),
         headerStyle:{
           backgroundColor:'#F3903D',
